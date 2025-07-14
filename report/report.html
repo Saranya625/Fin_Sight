@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo-section">
+        <h2>FinanceApp</h2>
+        <small>Financial Dashboard</small>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../Dashboard/dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+        <li><a href="../income/income.html"><i class="fas fa-money-bill-wave"></i><span>Income</span></a></li>
+        <li><a href="../expenses/expenses.html"><i class="fas fa-money-check-alt"></i><span>Expenses</span></a></li>
+        <li><a href="../analytics/analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
+        <li class="active"><a href="#"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+      </ul>
+      <div class="user-info">
+        <p>John Doe</p>
+        <small>john@example.com</small>
+      </div>
+    </aside>
+
+    <section class="main-content">
+      <div class="report-filters card">
+        <h3><i class="fas fa-filter"></i> Report Filters</h3>
+        <div class="form-group">
+          <label>From:</label>
+          <input type="date" id="fromDate" />
+        </div>
+        <div class="form-group">
+          <label>To:</label>
+          <input type="date" id="toDate" />
+        </div>
+        <div class="form-group">
+          <label>Category:</label>
+          <select id="category">
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="expenses">Expenses</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Report Sections:</label>
+          <div>
+            <label><input type="checkbox" class="report-option" value="summary" checked> Executive Summary</label><br>
+            <label><input type="checkbox" class="report-option" value="income" checked> Income Overview</label><br>
+            <label><input type="checkbox" class="report-option" value="spending" checked> Spending Patterns</label><br>
+            <label><input type="checkbox" class="report-option" value="trends" checked> Monthly Trends</label><br>
+            <label><input type="checkbox" class="report-option" value="charts" checked> Visual Charts</label>
+          </div>
+        </div>
+
+        <button id="generateBtn"><i class="fas fa-download"></i> Generate Report PDF</button>
+      </div>
+
+      <div class="report-preview card">
+        <h3><i class="fas fa-eye"></i> Report Preview</h3>
+
+        <section id="section-summary" class="report-section">
+          <h4>Executive Summary</h4>
+          <p>Key financial metrics: total income, total expenses, net savings over selected period.</p>
+        </section>
+
+        <section id="section-income" class="report-section">
+          <h4>Income Overview</h4>
+          <p>Detailed breakdown of income sources with dates and categories.</p>
+        </section>
+
+        <section id="section-spending" class="report-section">
+          <h4>Spending Patterns</h4>
+          <p>Category-wise breakdown of expenses. Includes pie chart below.</p>
+          <canvas id="pieChart" style="max-height: 250px;"></canvas>
+        </section>
+
+        <section id="section-trends" class="report-section">
+          <h4>Monthly Spending Trends</h4>
+          <p>Bar graph showing spending per month in selected range.</p>
+          <canvas id="barChart" style="max-height: 250px;"></canvas>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

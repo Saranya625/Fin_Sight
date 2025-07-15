@@ -351,3 +351,150 @@ body {
 .analytics h2 {
   margin-bottom: 20px;
 }
+
+/* Auth Styles */
+.auth-container {
+  background: #072c50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #f1f1f1;
+}
+
+.auth-card {
+  background: #0b3a66;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.auth-card .logo {
+  font-size: 40px;
+  color: #00c896;
+  margin-bottom: 10px;
+}
+
+.auth-card h1 {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.auth-card p {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.auth-card form {
+  margin-bottom: 20px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #1e4d77;
+  border-radius: 6px;
+  background: #0b3a66;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.auth-card input::placeholder {
+  color: #ccc;
+}
+
+.auth-card button[type="submit"] {
+  width: 100%;
+  background: #00c896;
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-card button[type="submit"]:hover:not(:disabled) {
+  background: #00b184;
+}
+
+.auth-card button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.auth-switch {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #00c896;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+.link-button:hover {
+  color: #00b184;
+}
+
+.auth-card hr {
+  margin: 25px 0;
+  border: none;
+  height: 1px;
+  background: #1e4d77;
+}
+
+.features-title {
+  font-weight: bold;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+}
+
+.features-list {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+  color: #ccc;
+}
+
+.features-list li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.features-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00c896;
+  font-weight: bold;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #666;
+}

@@ -1,27 +1,15 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp, faArrowDown, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from '../context/AuthContext'
+import { api } from '../services/api'
 import TransactionModal from './TransactionModal'
 import IncomeExpenseChart from './IncomeExpenseChart'
 
 const Dashboard = () => {
+  const { user } = useAuth()
   const [transactions, setTransactions] = useState([
-    {
-      id: 1,
-      date: '2024-01-15',
-      description: 'Monthly Salary',
-      category: 'Income',
-      amount: 5000,
-      type: 'income'
-    },
-    {
-      id: 2,
-      date: '2024-01-14',
-      description: 'Grocery Shopping',
-      category: 'Food',
-      amount: 125.50,
-      type: 'expense'
-    }
+    // Sample data - will be replaced by API data
   ])
   
   const [selectedMonth, setSelectedMonth] = useState('')
@@ -33,9 +21,25 @@ const Dashboard = () => {
     savingsRate: 0
   })
 
+  // Load transactions from API
+  useEffect(() => {
+    if (user) {
+      loadTransactions()
+    }
+  }, [user])
+
   useEffect(() => {
     calculateStats()
   }, [transactions, selectedMonth])
+
+  const loadTransactions = async () => {
+    try {
+      const data = await api.getTransactions(user.id)
+      setTransactions(data)
+    } catch (error) {
+      console.error('Failed to load transactions:', error)
+    }
+  }
 
   const calculateStats = () => {
     let income = 0
@@ -70,17 +74,30 @@ const Dashboard = () => {
     })
   }
 
-  const addTransaction = (transaction) => {
-    const newTransaction = {
-      ...transaction,
-      id: Date.now(),
-      amount: parseFloat(transaction.amount)
+  const addTransaction = async (transaction) => {
+    try {
+      const transactionData = {
+        ...transaction,
+        userId: user.id,
+        amount: parseFloat(transaction.amount)
+      }
+      
+      const newTransaction = await api.createTransaction(transactionData)
+      setTransactions([...transactions, newTransaction])
+    } catch (error) {
+      console.error('Failed to add transaction:', error)
+      alert('Failed to add transaction. Please try again.')
     }
-    setTransactions([...transactions, newTransaction])
   }
 
-  const deleteTransaction = (id) => {
-    setTransactions(transactions.filter(tx => tx.id !== id))
+  const deleteTransaction = async (id) => {
+    try {
+      await api.deleteTransaction(id)
+      setTransactions(transactions.filter(tx => tx.id !== id))
+    } catch (error) {
+      console.error('Failed to delete transaction:', error)
+      alert('Failed to delete transaction. Please try again.')
+    }
   }
 
   return (

@@ -100,47 +100,49 @@ const Dashboard = () => {
     }
   }
 
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <div>
       <div className="month-selector">
-        <label htmlFor="monthSelect">Select Month:</label>
         <input 
           type="month" 
           id="monthSelect" 
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
+          style={{backgroundColor: '#8db1e0', padding: '0.5vh 0.5vw', borderRadius: '0.3vw', color: '#1a0b35', fontWeight: '600'}}
         />
       </div>
 
       <section className="cards">
         <div className="card" id="balanceCard">
-          <p>Total Balance</p>
-          <h3>${stats.totalBalance.toFixed(2)}</h3>
-          <div className="change_positive">
+          <p style={{fontSize: '1.2em', fontWeight: '500'}}>Total Balance</p>
+          <h3 style={{fontSize: '1.5em', fontWeight: 'bold'}}>${stats.totalBalance.toFixed(2)}</h3>
+          <div className="change_positive" style={{fontSize: '1.2em', fontWeight: 'bold'}}>
             <FontAwesomeIcon icon={faArrowUp} /> 12.5%
           </div>
         </div>
         
         <div className="card">
-          <p>Monthly Income</p>
-          <h3>${stats.monthlyIncome.toFixed(2)}</h3>
-          <div className="change_positive">
+          <p style={{fontSize: '1.2em', fontWeight: '500'}}>Monthly Income</p>
+          <h3 style={{fontSize: '1.5em', fontWeight: 'bold'}}>${stats.monthlyIncome.toFixed(2)}</h3>
+          <div className="change_positive" style={{fontSize: '1.2em', fontWeight: 'bold'}}>
             <FontAwesomeIcon icon={faArrowUp} /> 8.2%
           </div>
         </div>
         
         <div className="card">
-          <p>Monthly Expenses</p>
-          <h3>${stats.monthlyExpenses.toFixed(2)}</h3>
-          <div className="change_negative">
+          <p style={{fontSize: '1.2em', fontWeight: '500'}}>Monthly Expenses</p>
+          <h3 style={{fontSize: '1.5em', fontWeight: 'bold'}}>${stats.monthlyExpenses.toFixed(2)}</h3>
+          <div className="change_negative" style={{fontSize: '1.2em', fontWeight: 'bold'}}>
             <FontAwesomeIcon icon={faArrowDown} /> 3.1%
           </div>
         </div>
         
         <div className="card">
-          <p>Savings Rate</p>
-          <h3>{stats.savingsRate}%</h3>
-          <div className="change_positive">
+          <p style={{fontSize: '1.2em', fontWeight: '500'}}>Savings Rate</p>
+          <h3 style={{fontSize: '1.5em', fontWeight: 'bold'}}>{stats.savingsRate}%</h3>
+          <div className="change_positive" style={{fontSize: '1.2em', fontWeight: 'bold'}}>
             <FontAwesomeIcon icon={faArrowUp} /> 2.4%
           </div>
         </div>
@@ -148,44 +150,44 @@ const Dashboard = () => {
 
       <section className="transactions">
         <div className="transactions-header">
-          <h2>Transactions</h2>
+          <h2 style={{fontWeight: '600'}}>Transactions</h2>
           <div className="transactions-controls">
-            <input type="text" placeholder="Search transactions..." />
-            <select>
+            <input type="text" placeholder="Search transactions" style={{backgroundColor: '#8db1e0', color: '#1a0b35', fontWeight: '600'}}/>
+            <select style={{backgroundColor: '#8db1e0', color: '#1a0b35', fontWeight: '600', padding: '1vh 1vw'}}>
               <option>Type</option>
             </select>
-            <select>
+            <select style={{backgroundColor: '#8db1e0', color: '#1a0b35', fontWeight: '600'}}>
               <option>Category</option>
             </select>
-            <input type="date" />
-            <button onClick={() => setShowModal(true)}>+ Add Transaction</button>
+            <input type="date" value={today} style={{backgroundColor: '#8db1e0', color: '#1a0b35', fontWeight: '600'}}/>
+            <button onClick={() => setShowModal(true)} style={{backgroundColor: '#8db1e0', color: '#1a0b35', fontWeight: '600'}}>+ Add Transaction</button>
           </div>
         </div>
         
-        <table>
+        <table style={{padding: '5vh 5vw', backgroundColor: '#1a0b35', borderRadius: '0.5vw', fontSize: '1.5em', fontWeight: 'normal', border: 'none'}}>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Amount</th>
-              <th>Actions</th>
+              <th style={{paddingTop: '2vh', paddingLeft: '2vw', color: '#8db1e0', fontWeight: '500'}}>Date</th>
+              <th style={{color: '#8db1e0', fontWeight: '500'}}>Description</th>
+              <th style={{color: '#8db1e0', fontWeight: '500'}}>Category</th>
+              <th style={{color: '#8db1e0', fontWeight: '500'}}>Amount</th>
+              <th style={{color: '#8db1e0', fontWeight: '500'}}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {transactions.map(tx => (
-              <tr key={tx.id}>
-                <td>{new Date(tx.date).toLocaleDateString()}</td>
-                <td>{tx.description}</td>
-                <td>{tx.category}</td>
-                <td className={tx.type === 'income' ? 'plus' : 'minus'}>
+              <tr key={tx.id} className="tableData">
+                <td style={{padding: '2vh 2vw', border: 'none'}}>{new Date(tx.date).toLocaleDateString()}</td>
+                <td style={{border: 'none'}}>{tx.description}</td>
+                <td style={{border: 'none'}}>{tx.category}</td>
+                <td className={tx.type === 'income' ? 'plus' : 'minus'} style={{border: 'none', fontWeight: 'bold'}}>
                   {tx.type === 'income' ? '+' : '-'}${tx.amount.toFixed(2)}
                 </td>
-                <td>
-                  <FontAwesomeIcon icon={faEdit} style={{ marginRight: '10px', cursor: 'pointer' }} />
+                <td style={{border: 'none'}}>
+                  <FontAwesomeIcon icon={faEdit} style={{ marginRight: '10px', cursor: 'pointer', paddingRight: '2vw'}} />
                   <FontAwesomeIcon 
                     icon={faTrashAlt} 
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', color: '#d41a1abe' }}
                     onClick={() => deleteTransaction(tx.id)}
                   />
                 </td>
@@ -195,9 +197,11 @@ const Dashboard = () => {
         </table>
       </section>
 
-      <section className="analytics">
+      <section className="analytics" style={{paddingBottom: '5vh'}}>
         <h2>Analytics</h2>
-        <IncomeExpenseChart transactions={transactions} />
+        <div style={{backgroundColor: '#1a0b35', borderRadius: '0.5vw'}}>
+          <IncomeExpenseChart transactions={transactions}/>
+        </div>
       </section>
 
       {showModal && (

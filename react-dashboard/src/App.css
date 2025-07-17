@@ -1,8 +1,8 @@
 /* Updated CSS with better button and form styling */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', sans-serif;
   margin: 0;
-  background: #f8f9fa;
+  background: #2f2963;
 }
 
 .container {
@@ -11,7 +11,7 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #1a1a2e;
+  background-color: #1a0b35;
   color: #fff;
   min-height: 100vh;
   padding: 20px;
@@ -30,7 +30,8 @@ body {
 .logo-section h2 {
   margin: 0;
   font-size: 24px;
-  color: #00d9a6;
+  color: #8db1e0;
+;
 }
 
 .logo-section small {
@@ -65,7 +66,7 @@ body {
 
 .nav-links li.active a,
 .nav-links a:hover {
-  background-color: #00d9a6;
+  background-color: #8db1e0;
   color: #1a1a2e;
 }
 
@@ -91,7 +92,7 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 30px;
+  padding-left: 2.5vw;
 }
 
 .month-selector {
@@ -103,16 +104,51 @@ body {
 
 .cards {
   display: flex;
-  gap: 20px;
+  width: 72.5vw;
+  justify-content: space-between;
   flex-wrap: wrap;
+  padding-bottom: 3vh;
 }
 
 .card {
-  background: white;
-  padding: 20px;
+  background: #1a0b35;
+  padding-top: 1.2vh;
+  padding-left: 1.5vw;
+  padding-bottom: 2.5vh;
   border-radius: 8px;
   width: 220px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1vh 1vw rgba(0,0,0,0.1);
+}
+
+.card p{
+  color: white;
+}
+
+.card h3{
+  color: #8db1e0;
+}
+
+.card:hover{
+  background: #8db1e0;
+  padding-top: 1.2vh;
+  padding-left: 1.5vw;
+  padding-bottom: 2.5vh;
+  border-radius: 8px;
+  width: 220px;
+  transition: color 0.2s ease;
+  transform: translateY(-0.5vh);
+  box-shadow: 0 1vh 1vw rgba(0,0,0,0.1);
+}
+
+.card:hover p{
+  color: #11677eff;
+  transition: color 0.2s ease;
+}
+
+.card:hover h3{
+  color: #2f2963;
+  transition: color 0.2s ease;
 }
 
 .change_positive {
@@ -139,11 +175,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 72.5vw;
 }
 
 .transactions-controls {
   display: flex;
-  gap: 10px;
+  gap: 1vw;
   align-items: center;
 }
 
@@ -170,7 +207,7 @@ body {
 }
 
 .transactions table {
-  width: 100%;
+  width: 72.5vw;
   border-collapse: collapse;
   margin-top: 10px;
 }
@@ -183,11 +220,23 @@ body {
 }
 
 .plus {
-  color: green;
+  color: #3dac43;
 }
 
 .minus {
   color: red;
+}
+
+.tableData{
+  color: white;
+  font-weight: 300;
+}
+
+.tableData:hover{
+  background-color: #8db1e0;
+  color: #11677eff;
+  transition: color 0.2s ease;
+  font-weight: 400;
 }
 
 /* Modal */

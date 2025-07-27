@@ -61,6 +61,8 @@ const Expenses = ({ transactions, addTransaction, updateTransaction, deleteTrans
     await deleteTransaction(id);
   };
 
+  
+
   const handleCloseModal = () => {
     setEditingTransaction(null);
     setShowModal(false);

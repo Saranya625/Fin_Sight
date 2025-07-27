@@ -11,6 +11,8 @@ const TransactionModal = ({ onClose, onSubmit, initialData, goals }) => {
     goalId: '',
   })
 
+  
+
   const [selectedQuickAmount, setSelectedQuickAmount] = useState(null)
 
   useEffect(() => {

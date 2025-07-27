@@ -36,7 +36,7 @@ const Login = () => {
       if (!result.success) {
         setError(result.message || 'Authentication failed');
       }
-    } catch (err) {
+    } catch (error) {
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);

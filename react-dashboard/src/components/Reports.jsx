@@ -6,32 +6,20 @@ import '../Reports.css';
 
 const Reports = () => {
   const { user } = useAuth();
-  const [insights, setInsights] = useState({
-    incomeExpenseSummary: true,
-    spendingByCategory: true,
-    budgetVsActual: false,
-    taxSavingExpenses: false,
-    highValueTransactions: false,
-    monthlyCashFlow: false,
-    anomalies: false,
-    topMerchants: false,
-  });
-
   const [format, setFormat] = useState('pdf');
   const [duration, setDuration] = useState('thisMonth');
   const [customDate, setCustomDate] = useState({ start: '', end: '' });
+  const [email, setEmail] = useState('');
   const [previewData, setPreviewData] = useState(null);
 
-  const handleInsightChange = (e) => {
-    setInsights({ ...insights, [e.target.name]: e.target.checked });
-  };
+  
 
   const handleGenerateReport = async (preview = false) => {
     const reportOptions = {
-      insights,
       format: preview ? 'preview' : format,
       duration,
       customDate,
+      email: format === 'email' ? email : undefined,
     };
 
     try {
@@ -39,7 +27,7 @@ const Reports = () => {
       if (preview) {
         const data = await response.json();
         setPreviewData(data);
-      } else if (format === 'csv' || format === 'pdf') {
+      } else if ( format === 'pdf') {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -61,28 +49,9 @@ const Reports = () => {
   return (
     <div className="reports-container">
       <h2>Generate a Personalized Report</h2>
-      <p>Select the insights that matter to you, and we’ll generate a personalized report with smart summaries and visualizations.</p>
+      <p> generate a personalized report with smart summaries .</p>
 
       <div className="report-options">
-        <div className="insights-selection">
-          <h3>What would you like to include?</h3>
-          <ul>
-            {Object.keys(insights).map((insight) => (
-              <li key={insight}>
-                <label>
-                  <input
-                    type="checkbox"
-                    name={insight}
-                    checked={insights[insight]}
-                    onChange={handleInsightChange}
-                  />
-                  {insight.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="format-duration-selection">
           <div className="format-selection">
             <h3>Format:</h3>
@@ -90,12 +59,7 @@ const Reports = () => {
               <button className={format === 'pdf' ? 'active' : ''} onClick={() => setFormat('pdf')}>
                 <FileText /> PDF Report
               </button>
-              <button className={format === 'email' ? 'active' : ''} onClick={() => setFormat('email')}>
-                <Mail /> Email to Myself
-              </button>
-              <button className={format === 'csv' ? 'active' : ''} onClick={() => setFormat('csv')}>
-                <Download /> Download CSV
-              </button>
+              
             </div>
           </div>
 

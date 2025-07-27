@@ -20,7 +20,10 @@ const Sidebar = ({ currentPage, setCurrentPage }) => {
   return (
     <aside className="sidebar">
       <div className="logo-section">
-        <h2>FinSight</h2>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="/logo_finsight.png"  className="logo" />
+          <h2>FinSight</h2>
+        </div>
         <small>Financial Dashboard</small>
       </div>
       

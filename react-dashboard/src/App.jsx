@@ -15,6 +15,17 @@ function AppContent() {
   const [currentPage, setCurrentPage] = useState('dashboard')
   const [transactions, setTransactions] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [editingTransaction, setEditingTransaction] = useState(null)
+
+  const handleAddOrUpdateTransaction = async (transaction) => {
+    if (editingTransaction) {
+      await updateTransaction(editingTransaction._id, transaction)
+    } else {
+      await addTransaction(transaction)
+    }
+    setEditingTransaction(null)
+    setShowModal(false)
+  }
 
   useEffect(() => {
     if (user) {
@@ -124,13 +135,7 @@ function AppContent() {
       <main className="main-content">
         {renderCurrentPage()}
       </main>
-      {showModal && (
-        <TransactionModal 
-          onClose={() => { setEditingTransaction(null); setShowModal(false); }}
-          onSubmit={handleAddOrUpdateTransaction}
-          initialData={editingTransaction}
-        />
-      )}
+      
     </div>
   )
 }

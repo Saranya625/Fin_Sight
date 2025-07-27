@@ -61,6 +61,8 @@ const Income = ({ transactions, addTransaction, updateTransaction, deleteTransac
     await deleteTransaction(id);
   };
 
+  
+
   const handleCloseModal = () => {
     setEditingTransaction(null);
     setShowModal(false);

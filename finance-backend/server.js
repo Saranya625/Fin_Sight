@@ -19,7 +19,9 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.send('Finance Backend is running 🚀');
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/dashboard', dashboardRoutes);

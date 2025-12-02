@@ -139,6 +139,5 @@ Fin_Sight/
 └── README.md
 ```
 
-<<<<<<< HEAD
 =======
 
